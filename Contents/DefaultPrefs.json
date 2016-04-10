@@ -1,0 +1,398 @@
+[
+	{
+		"id": "system.1.enabled",
+		"type": "bool",
+		"label": "System 1: Enabled",
+		"default": "true"
+	},
+	{
+		"id": "system.1.alias",
+		"type": "text",
+		"label": "System 1: Friendly name",
+		"default": "Media Server 1"
+	},
+	{
+		"id": "system.1.macaddress",
+		"type": "text",
+		"label": "System 1: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.1.port",
+		"type": "text",
+		"label": "System 1: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.1.broadcast",
+		"type": "text",
+		"label": "System 1: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.1.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 1: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.2.enabled",
+		"type": "bool",
+		"label": "System 2: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.2.alias",
+		"type": "text",
+		"label": "System 2: Friendly name",
+		"default": "Media Server 2"
+	},
+	{
+		"id": "system.2.macaddress",
+		"type": "text",
+		"label": "System 2: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.2.port",
+		"type": "text",
+		"label": "System 2: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.2.broadcast",
+		"type": "text",
+		"label": "System 2: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.2.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 2: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.3.enabled",
+		"type": "bool",
+		"label": "System 3: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.3.alias",
+		"type": "text",
+		"label": "System 3: Friendly name",
+		"default": "Media Server 3"
+	},
+	{
+		"id": "system.3.macaddress",
+		"type": "text",
+		"label": "System 3: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.3.port",
+		"type": "text",
+		"label": "System 3: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.3.broadcast",
+		"type": "text",
+		"label": "System 3: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.3.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 3: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.4.enabled",
+		"type": "bool",
+		"label": "System 4: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.4.alias",
+		"type": "text",
+		"label": "System 4: Friendly name",
+		"default": "Media Server 4"
+	},
+	{
+		"id": "system.4.macaddress",
+		"type": "text",
+		"label": "System 4: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.4.port",
+		"type": "text",
+		"label": "System 4: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.4.broadcast",
+		"type": "text",
+		"label": "System 4: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.4.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 4: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.5.enabled",
+		"type": "bool",
+		"label": "System 5: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.5.alias",
+		"type": "text",
+		"label": "System 5: Friendly name",
+		"default": "Media Server 5"
+	},
+	{
+		"id": "system.5.macaddress",
+		"type": "text",
+		"label": "System 5: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.5.port",
+		"type": "text",
+		"label": "System 5: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.5.broadcast",
+		"type": "text",
+		"label": "System 5: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.5.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 5: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.6.enabled",
+		"type": "bool",
+		"label": "System 6: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.6.alias",
+		"type": "text",
+		"label": "System 6: Friendly name",
+		"default": "Media Server 6"
+	},
+	{
+		"id": "system.6.macaddress",
+		"type": "text",
+		"label": "System 6: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.6.port",
+		"type": "text",
+		"label": "System 6: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.6.broadcast",
+		"type": "text",
+		"label": "System 6: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.6.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 6: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.7.enabled",
+		"type": "bool",
+		"label": "System 7: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.7.alias",
+		"type": "text",
+		"label": "System 7: Friendly name",
+		"default": "Media Server 7"
+	},
+	{
+		"id": "system.7.macaddress",
+		"type": "text",
+		"label": "System 7: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.7.port",
+		"type": "text",
+		"label": "System 7: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.7.broadcast",
+		"type": "text",
+		"label": "System 7: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.7.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 7: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.8.enabled",
+		"type": "bool",
+		"label": "System 8: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.8.alias",
+		"type": "text",
+		"label": "System 8: Friendly name",
+		"default": "Media Server 8"
+	},
+	{
+		"id": "system.8.macaddress",
+		"type": "text",
+		"label": "System 8: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.8.port",
+		"type": "text",
+		"label": "System 8: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.8.broadcast",
+		"type": "text",
+		"label": "System 8: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.8.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 8: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.9.enabled",
+		"type": "bool",
+		"label": "System 9: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.9.alias",
+		"type": "text",
+		"label": "System 9: Friendly name",
+		"default": "Media Server 9"
+	},
+	{
+		"id": "system.9.macaddress",
+		"type": "text",
+		"label": "System 9: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.9.port",
+		"type": "text",
+		"label": "System 9: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.9.broadcast",
+		"type": "text",
+		"label": "System 9: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.9.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 9: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.10.enabled",
+		"type": "bool",
+		"label": "System 10: Enabled",
+		"default": "false"
+	},
+	{
+		"id": "system.10.alias",
+		"type": "text",
+		"label": "System 10: Friendly name",
+		"default": "Media Server 10"
+	},
+	{
+		"id": "system.10.macaddress",
+		"type": "text",
+		"label": "System 10: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.10.port",
+		"type": "text",
+		"label": "System 10: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.10.broadcast",
+		"type": "text",
+		"label": "System 10: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.10.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"label": "System 10: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "Group.1.wolname",
+		"type": "text",
+		"label": "WOL Group 1: Friendly Name",
+		"default": "WOL Group 1"
+	},
+	{
+		"id": "Group.1.stagger",
+		"type": "enum",
+		"values": ["0 seconds","0.5 seconds", "1 second","2 seconds"],
+		"label": "WOL Group 1: Staggered Startup",
+		"default": "0 seconds"
+	},
+	{
+		"id": "Group.2.wolname",
+		"type": "text",
+		"label": "WOL Group 2: Friendly Name",
+		"default": "WOL Group 2"
+	},
+	{
+		"id": "Group.2.stagger",
+		"type": "enum",
+		"values": ["0 seconds","0.5 seconds", "1 second","2 seconds"],
+		"label": "WOL Group 2: Staggered Startup",
+		"default": "0 seconds"
+	}
+]
