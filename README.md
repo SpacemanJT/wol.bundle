@@ -1,2 +1,2 @@
-# plexwol.bundle
-Wake on LAN Plugin for Plex
+# wol.bundle
+# Wake on LAN Plugin for Plex
