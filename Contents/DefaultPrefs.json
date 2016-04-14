@@ -2,7 +2,7 @@
 	{
 		"id": "system.1.enabled",
 		"type": "bool",
-		"label": "System 1: Enabled",
+		"label": "System 1: Show in List",
 		"default": "true"
 	},
 	{
@@ -39,7 +39,7 @@
 	{
 		"id": "system.2.enabled",
 		"type": "bool",
-		"label": "System 2: Enabled",
+		"label": "System 2: Show in List",
 		"default": "false"
 	},
 	{
@@ -76,7 +76,7 @@
 	{
 		"id": "system.3.enabled",
 		"type": "bool",
-		"label": "System 3: Enabled",
+		"label": "System 3: Show in List",
 		"default": "false"
 	},
 	{
@@ -113,7 +113,7 @@
 	{
 		"id": "system.4.enabled",
 		"type": "bool",
-		"label": "System 4: Enabled",
+		"label": "System 4: Show in List",
 		"default": "false"
 	},
 	{
@@ -150,7 +150,7 @@
 	{
 		"id": "system.5.enabled",
 		"type": "bool",
-		"label": "System 5: Enabled",
+		"label": "System 5: Show in List",
 		"default": "false"
 	},
 	{
@@ -187,7 +187,7 @@
 	{
 		"id": "system.6.enabled",
 		"type": "bool",
-		"label": "System 6: Enabled",
+		"label": "System 6: Show in List",
 		"default": "false"
 	},
 	{
@@ -224,7 +224,7 @@
 	{
 		"id": "system.7.enabled",
 		"type": "bool",
-		"label": "System 7: Enabled",
+		"label": "System 7: Show in List",
 		"default": "false"
 	},
 	{
@@ -261,7 +261,7 @@
 	{
 		"id": "system.8.enabled",
 		"type": "bool",
-		"label": "System 8: Enabled",
+		"label": "System 8: Show in List",
 		"default": "false"
 	},
 	{
@@ -298,7 +298,7 @@
 	{
 		"id": "system.9.enabled",
 		"type": "bool",
-		"label": "System 9: Enabled",
+		"label": "System 9: Show in List",
 		"default": "false"
 	},
 	{
@@ -335,7 +335,7 @@
 	{
 		"id": "system.10.enabled",
 		"type": "bool",
-		"label": "System 10: Enabled",
+		"label": "System 10: Show in List",
 		"default": "false"
 	},
 	{
@@ -378,9 +378,9 @@
 	{
 		"id": "Group.1.stagger",
 		"type": "enum",
-		"values": ["0 seconds","0.5 seconds", "1 second","2 seconds"],
+		"values": ["0 seconds", "0.5 seconds", "1 second", "1.5 seconds", "2 seconds"],
 		"label": "WOL Group 1: Staggered Startup",
-		"default": "0 seconds"
+		"default": "0.5 seconds"
 	},
 	{
 		"id": "Group.2.wolname",
@@ -391,8 +391,8 @@
 	{
 		"id": "Group.2.stagger",
 		"type": "enum",
-		"values": ["0 seconds","0.5 seconds", "1 second","2 seconds"],
+		"values": ["0 seconds", "0.5 seconds", "1 second", "1.5 seconds", "2 seconds"],
 		"label": "WOL Group 2: Staggered Startup",
-		"default": "0 seconds"
+		"default": "0.5 seconds"
 	}
 ]
