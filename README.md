@@ -34,4 +34,10 @@ Revision History:
  1.01 10-04-16 Code tidied
  1.02 10-04-16 Added support for two WOL Groups and staggered startups
  1.03 10-04-16 Renamed the files in preparation for UAS submission
+ 1.04 14-04-16 Add Support for 1.5 second group delay; WOL Default Group Delay now 0.5 seconds instead of 0
+               Additional logging information for the processing of preferences and Group WOL actions
+               Tidied up some of the terminology - Systems not "enabled" can still be used in Group wake up
+               so "enabled" has been replaced with "Show in List"
+               Cured a bug where a system that was enabled, and specified to be used in a group but had
+               invalid settings would still be added to the group wake up
  
