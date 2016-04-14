@@ -1,7 +1,7 @@
 ###################################################################################################
 # Wake on LAN Utility for Plex
 #
-# SpacemanJT  - Andrew Sharrad 10-04-16
+# SpacemanJT  - Andrew Sharrad 14-04-16
 # Please see https://github.com/SpacemanJT/wol.bundle for more information
 #
 # Many thanks to the valuable contributions from the community in the development of this Plugin.
@@ -17,7 +17,7 @@
 #
 # In addition the plugin supports up to two Wake-up Groups, where Wake requests can be sent to any of the
 # specified 10 systems, even if the system is disable from appearing on the main list. Each Wake up group
-# can be staggered to add a delay between machines of 0, 0.5,1 or 2 seconds.
+# can be staggered to add a delay between machines of 0, 0.5, 1, 1.5 or 2 seconds.
 #
 # The Plugin does its best to error check and where possible correct user preferences. Failures to send
 # WOL requests are also reported and logged in C:\Users\Administrator\AppData\Local\Plex Media Server\Logs\PMS Plugin Logs
@@ -28,6 +28,12 @@
 # 1.01   10-04-16   Code tidied
 # 1.02   10-04-16   Added support for two WOL Groups and staggered startups
 # 1.03   10-04-16   Renamed the files in preparation for UAS submission
+# 1.04   12-04-16   Add Support for 1.5 second group delay; WOL Default Group Delay now 0.5 seconds instead of 0
+#                   Additional logging information for the processing of preferences and Group WOL actions
+#                   Tidied up some of the terminology - Systems not "enabled" can still be used in Group wake up
+#                   so "enabled" has been replaced with "Show in List"
+#                   Cured a bug where a system that was enabled, and specified to be used in a group but had
+#                   invalid settings would still be added to the group wake up
 #
 ###################################################################################################
 
@@ -45,7 +51,7 @@ ABOUT_ICON = 'wol_icon-about.png'
 
 NAME = 'Wake on LAN'
 MAX_SERVERS = 10
-WOL_VERSION = 1.03
+WOL_VERSION = 1.04
 
 ####################################################################################################
 def Start():
@@ -72,17 +78,20 @@ def MainMenu():
 
     for i in range(1,MAX_SERVERS+1):
         wakesystem = Loadwakesystem(i)
-        if (wakesystem.enable):
-            oc.add(CreateTrackObject(macaddress=wakesystem.macaddress, alias=wakesystem.alias, port=wakesystem.port, broadcast_ip=wakesystem.broadcast))
+        if (wakesystem.valid):
+            if (wakesystem.enable):
+                oc.add(CreateTrackObject(macaddress=wakesystem.macaddress, alias=wakesystem.alias, port=wakesystem.port, broadcast_ip=wakesystem.broadcast))
 
-# The code below allows WOL Systems to be added and used to groups even if disabled.
+# This arrangement allows WOL Systems to be added and used to groups even if disabled inividually, as long as the settings were Valid
 
-	if (wakesystem.group == "Group 1") or (wakesystem.group == "Groups 1 and 2"):
-            grouplist.append(wakesystem)
-            groupcount=groupcount+1
-        if (wakesystem.group == "Group 2") or (wakesystem.group == "Groups 1 and 2"):
-	    group2list.append(wakesystem)
-            group2count=group2count+1
+            if (wakesystem.group == "Group 1") or (wakesystem.group == "Groups 1 and 2"):
+                grouplist.append(wakesystem)
+                groupcount=groupcount+1
+                Log ("System " + str(wakesystem.index) + ": " + wakesystem.alias + " added to Group 1")
+            if (wakesystem.group == "Group 2") or (wakesystem.group == "Groups 1 and 2"):
+                group2list.append(wakesystem)
+                group2count=group2count+1
+                Log ("System " + str(wakesystem.index) + ": " + wakesystem.alias + " added to Group 2")
     
 #    for wakesystem in grouplist:
 #        Log ("System: " + wakesystem.alias + " added to group")
@@ -110,7 +119,6 @@ def CreateTrackObject(macaddress, alias, port, broadcast_ip, include_container=F
     else:
         return track_object
 
-
 ####################################################################################################
 @route(PREFIX + '/about')
 def About():
@@ -125,7 +133,7 @@ def About():
 @route(PREFIX + '/groupwake', groupnum=int)
 def groupwake(groupname, groupnum):
 
-    Log ("Starting Group Wake for Group Name: " + groupname + " Number: " + str(groupnum))
+    Log ("Starting Group Wake for Group " + str(groupnum) + ": " + groupname)
     
     count=0
     errors=0
@@ -136,10 +144,16 @@ def groupwake(groupname, groupnum):
         for wakesystem in grouplist:
             if firstrun > 0:
                 if groupdelay == "0.5 seconds":
+                    Log ("Pausing for Group 1 Staggered Delay - 0.5 seconds")
                     time.sleep(0.5)
                 if groupdelay == "1 second":
+                    Log ("Pausing for Group 1 Staggered Delay - 1 second")
                     time.sleep(1)
+                if groupdelay == "1.5 seconds":
+                    Log ("Pausing for Group 1 Staggered Delay - 1.5 seconds")
+                    time.sleep(1.5)
                 if groupdelay == "2 seconds":
+                    Log ("Pausing for Group 1 Staggered Delay - 2 seconds")
                     time.sleep(2)
             if not (sendmagic(wakesystem.macaddress, wakesystem.alias, wakesystem.port, wakesystem.broadcast, False)):
                 errors = errors +1
@@ -151,25 +165,33 @@ def groupwake(groupname, groupnum):
         for wakesystem in group2list:
             if firstrun > 0:
                 if groupdelay == "0.5 seconds":
+                    Log ("Pausing for Group 2 Staggered Delay - 0.5 seconds")
                     time.sleep(0.5)
                 if groupdelay == "1 second":
+                    Log ("Pausing for Group 2 Staggered Delay - 1 second")
                     time.sleep(1)
+                if groupdelay == "1.5 seconds":
+                    Log ("Pausing for Group 2 Staggered Delay - 1.5 seconds")
+                    time.sleep(1.5)
                 if groupdelay == "2 seconds":
+                    Log ("Pausing for Group 2 Staggered Delay - 2 seconds")
                     time.sleep(2)            
             if not (sendmagic(wakesystem.macaddress, wakesystem.alias, wakesystem.port, wakesystem.broadcast, False)):
                 errors = errors +1
             count=count + 1
             firstrun = 1
-            
+    
+#    Log ("Number of Request sent: " + str(count) + " Number of Errors: " + str(errors))
+#    Log ("Group Wake Completed for Group Name: " + groupname + " Number: " + str(groupnum))
 
     if errors > 0:
-        Log ("Group " + groupname + ": Wake request sent to " + str(count) + " systems with " + str(errors) + " errors")
+        Log ("Group " + str(groupnum) + ": " + groupname + " - Wake request sent to " + str(count) + " systems with " + str(errors) + " errors")
         if count > 1:
             return MessageContainer(header = 'Success', message = 'Request sent to ' + str(count) + ' systems with ' + str(errors) + ' errors')
         else:
             return MessageContainer(header = 'Success', message = 'Request sent to the system with ' + str(errors) + ' errors')
     else:  
-        Log ("Group " + groupname + ": Wake request sent to " + str(count) + " systems with no errors")
+        Log ("Group " + str(groupnum) + ": " + groupname + " - Wake request sent to " + str(count) + " systems with no errors")
         if count > 1:
             return MessageContainer(header = 'Success', message = 'Request sent to ' + str(count) + ' systems with no errors')
         else:
@@ -199,14 +221,14 @@ def sendmagic(macaddress, alias, port, broadcast_ip, sendmess):
         sock.connect((broadcast_ip, port))
         sock.send(send_data)
         sock.close()
-        Log ("Packet Sent")
+        Log ("Packet Sent to: " + alias)
         if (sendmess):
             return MessageContainer(header='Success', message='Request sent to ' + alias)
         else:
             return True
         
     except socket.error as serr:
-        Log ("Request failure to " + alias + ":  " + str(serr))
+        Log ("Request failure to: " + alias + ":  " + str(serr))
         if (sendmess):
             return MessageContainer(header='Failure', message='Request failure to ' + alias + ': ' + str(serr))
         else:
@@ -220,48 +242,69 @@ def Loadwakesystem(i):
     port = int(Prefs['system.' + str(i) + '.port'])
     broadcast = Prefs['system.' + str(i) + '.broadcast']
     group = Prefs['system.' + str(i) + '.group']
+    valid = True
 
     if port < 1:
-        Log ("System " + str(i) + " Port address is too low at " + str(port) + ", changing to 7")
+        Log ("System " + str(i) + ": Port address is too low at " + str(port) + ", changing to 7")
         port = 7
 
     if port > 65535:
-        Log ("System " + str(i) + " Port number is too high at " + str(port) + ", changing to 7")
+        Log ("System " + str(i) + ": Port number is too high at " + str(port) + ", changing to 7")
         port = 7
 
     if len(str(macaddress)) == 17:
         sep = macaddress[2]
         macaddress = macaddress.replace(sep, '')
-        Log ("System " + str(i) + " Removed MAC Address Seperator Character " + sep)
+        Log ("System " + str(i) + ": Removed MAC Address Seperator Character: " + sep)
 
     if len(str(macaddress)) > 12:
-        enable = False
-        Log ("System " + str(i) + " MAC address is too long, disabling System")
+        valid = False
+        Log ("System " + str(i) + ": MAC address is too long, System is NOT Valid")
 
     if len(str(macaddress)) < 12:
-        enable = False
-        Log ("System " + str(i) + " MAC address is too short, disabling System")
+        valid = False
+        Log ("System " + str(i) + ": MAC address is too short, System is NOT Valid")
 
     if is_hex(macaddress) == False:
-        enable = False
-        Log ("System " + str(i) + " MAC address contains non-hexadecimal characters, disabling System")
+        valid = False
+        Log ("System " + str(i) + ": MAC address contains non-hexadecimal characters, System is NOT Valid")
+
+    if macaddress == "ffffffffffff":
+        Log ("System " + str(i) + ": Warning - the MAC Address for this System is at the default value and likely will not work as intended: " + macaddress)
+
+    if macaddress == "000000000000":
+        Log ("System " + str(i) + ": Warning - the MAC Address for this System is invalid and may not work as intended: " + macaddress)
 
     if len(str(alias)) == 0:
         alias = "Media Server " + stri(i)
-        Log ("System " + str(i) + " Alias is blank, using default of " + alias)
+        Log ("System " + str(i) + ": Alias is blank, using default of: " + alias)
 
     if broadcast == "":
         broadcast = "255.255.255.255"
-        Log ("System " + str(i) + " Broadcast IP Address is blank, using default of " + broadcast)
+        Log ("System " + str(i) + ": Broadcast IP Address is blank, using default of: " + broadcast)
 
     if isgoodipv4(broadcast) == False:
-        Log ("Warning: System " + str(i) + " IP Address Invalid - Please ensure this is a valid IP or Hostname")
+        Log ("Warning: System " + str(i) + ": IP Address Invalid - Please ensure this is a valid IP or Hostname")
 
-    return wakesystem(i,enable,alias,macaddress,port,broadcast,group)
+    if valid:
+        if enable:
+            Log ("System " + str(i) + ": Requested to be shown in the List of Systems - System is Valid - Alias: " + alias + " MAC Address: " + macaddress + " Port: " + str(port) + " Broadcast IP: " + broadcast)
+        
+        if not enable:
+            Log ("System " + str(i) + ": Not Requested to be shown in the List of Systems (System is Valid) - Alias: " + alias + " MAC Address: " + macaddress + " Port: " + str(port) + " Broadcast IP: " + broadcast)
+    
+    if not valid:
+        if enable:
+            Log ("System " + str(i) + ": Requested to be shown in the List of Systems - System is NOT Valid - System not available - Alias: " + alias + " MAC Address: " + macaddress + " Port: " + str(port) + " Broadcast IP: " + broadcast)
+
+        if not enable:    
+            Log ("System " + str(i) + ": Not Requested to be shown in the List of Systems (System is NOT Valid) - System not available - Alias: " + alias + " MAC Address: " + macaddress + " Port: " + str(port) + " Broadcast IP: " + broadcast)
+
+    return wakesystem(i,enable,alias,macaddress,port,broadcast,group,valid)
 
 ###################################################################################################
 class wakesystem:
-    def __init__(self,index,enable,alias,macaddress, port, broadcast, group):
+    def __init__(self,index,enable,alias,macaddress, port, broadcast, group, valid):
         self.index = index
         self.enable = enable
         self.alias = alias
@@ -269,6 +312,7 @@ class wakesystem:
         self.port = port
         self.broadcast = broadcast
         self.group = group
+        self.valid = valid
 
 ###################################################################################################
 def is_hex(s):
