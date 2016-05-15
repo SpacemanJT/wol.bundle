@@ -32,7 +32,7 @@
 	{
 		"id": "system.1.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 1: Include in WOL Group",
 		"default": "No"
 	},
@@ -69,7 +69,7 @@
 	{
 		"id": "system.2.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 2: Include in WOL Group",
 		"default": "No"
 	},
@@ -106,7 +106,7 @@
 	{
 		"id": "system.3.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 3: Include in WOL Group",
 		"default": "No"
 	},
@@ -143,7 +143,7 @@
 	{
 		"id": "system.4.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 4: Include in WOL Group",
 		"default": "No"
 	},
@@ -180,7 +180,7 @@
 	{
 		"id": "system.5.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 5: Include in WOL Group",
 		"default": "No"
 	},
@@ -217,7 +217,7 @@
 	{
 		"id": "system.6.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 6: Include in WOL Group",
 		"default": "No"
 	},
@@ -254,7 +254,7 @@
 	{
 		"id": "system.7.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 7: Include in WOL Group",
 		"default": "No"
 	},
@@ -291,7 +291,7 @@
 	{
 		"id": "system.8.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 8: Include in WOL Group",
 		"default": "No"
 	},
@@ -328,7 +328,7 @@
 	{
 		"id": "system.9.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 9: Include in WOL Group",
 		"default": "No"
 	},
@@ -365,8 +365,82 @@
 	{
 		"id": "system.10.group",
 		"type": "enum",
-		"values": ["No","Group 1", "Group 2","Groups 1 and 2"],
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
 		"label": "System 10: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.11.enabled",
+		"type": "bool",
+		"label": "System 11: Show in List",
+		"default": "false"
+	},
+	{
+		"id": "system.11.alias",
+		"type": "text",
+		"label": "System 11: Friendly name",
+		"default": "Media Server 11"
+	},
+	{
+		"id": "system.11.macaddress",
+		"type": "text",
+		"label": "System 11: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.11.port",
+		"type": "text",
+		"label": "System 11: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.11.broadcast",
+		"type": "text",
+		"label": "System 11: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.11.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
+		"label": "System 11: Include in WOL Group",
+		"default": "No"
+	},
+	{
+		"id": "system.12.enabled",
+		"type": "bool",
+		"label": "System 12: Show in List",
+		"default": "false"
+	},
+	{
+		"id": "system.12.alias",
+		"type": "text",
+		"label": "System 12: Friendly name",
+		"default": "Media Server 12"
+	},
+	{
+		"id": "system.12.macaddress",
+		"type": "text",
+		"label": "System 12: MAC Address",
+		"default": "FF:FF:FF:FF:FF:FF"
+	},
+	{
+		"id": "system.12.port",
+		"type": "text",
+		"label": "System 12: Port (Usually 7 or 9)",
+		"default": "7"
+	},
+	{
+		"id": "system.12.broadcast",
+		"type": "text",
+		"label": "System 12: Broadcast IP",
+		"default": "255.255.255.255"
+	},
+	{
+		"id": "system.12.group",
+		"type": "enum",
+		"values": ["No","Group 1", "Group 2","Group 3","Groups 1 and 2","Groups 1 and 3","Groups 2 and 3"],
+		"label": "System 12: Include in WOL Group",
 		"default": "No"
 	},
 	{
@@ -393,6 +467,19 @@
 		"type": "enum",
 		"values": ["0 seconds", "0.5 seconds", "1 second", "1.5 seconds", "2 seconds"],
 		"label": "WOL Group 2: Staggered Startup",
+		"default": "0.5 seconds"
+	},
+	{
+		"id": "Group.3.wolname",
+		"type": "text",
+		"label": "WOL Group 3: Friendly Name",
+		"default": "WOL Group 3"
+	},
+	{
+		"id": "Group.3.stagger",
+		"type": "enum",
+		"values": ["0 seconds", "0.5 seconds", "1 second", "1.5 seconds", "2 seconds"],
+		"label": "WOL Group 3: Staggered Startup",
 		"default": "0.5 seconds"
 	}
 ]
