@@ -40,4 +40,6 @@ Revision History:
                so "enabled" has been replaced with "Show in List"
                Cured a bug where a system that was enabled, and specified to be used in a group but had
                invalid settings would still be added to the group wake up
+ 1.05 14-05-16 Changed the number of servers supported from 10 to 12
+               Changed the number of groups from 2 to 3
  
