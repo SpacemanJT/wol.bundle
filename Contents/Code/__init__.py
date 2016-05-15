@@ -34,6 +34,8 @@
 #                   so "enabled" has been replaced with "Show in List"
 #                   Cured a bug where a system that was enabled, and specified to be used in a group but had
 #                   invalid settings would still be added to the group wake up
+# 1.05   14-05-16   Changed the number of servers supported from 10 to 12
+#                   Changed the number of groups from 2 to 3
 #
 ###################################################################################################
 
@@ -50,8 +52,9 @@ GROUP_ICON = 'wol_icon-group.png'
 ABOUT_ICON = 'wol_icon-about.png'
 
 NAME = 'Wake on LAN'
-MAX_SERVERS = 10
-WOL_VERSION = 1.04
+MAX_SERVERS = 12
+WOL_VERSION = 1.05
+WOL_DATE = '14-05-16'
 
 ####################################################################################################
 def Start():
@@ -67,12 +70,16 @@ def MainMenu():
 
     groupcount = 0
     group2count = 0
+    group3count = 0
     
     global grouplist
     grouplist = []
     
     global group2list
     group2list = []
+    
+    global group3list
+    group3list = []
     
     oc = ObjectContainer()
 
@@ -84,14 +91,18 @@ def MainMenu():
 
 # This arrangement allows WOL Systems to be added and used to groups even if disabled inividually, as long as the settings were Valid
 
-            if (wakesystem.group == "Group 1") or (wakesystem.group == "Groups 1 and 2"):
+            if (wakesystem.group == "Group 1") or (wakesystem.group == "Groups 1 and 2") or (wakesystem.group == "Groups 1 and 3"):
                 grouplist.append(wakesystem)
                 groupcount=groupcount+1
                 Log ("System " + str(wakesystem.index) + ": " + wakesystem.alias + " added to Group 1")
-            if (wakesystem.group == "Group 2") or (wakesystem.group == "Groups 1 and 2"):
+            if (wakesystem.group == "Group 2") or (wakesystem.group == "Groups 1 and 2") or (wakesystem.group == "Groups 2 and 3"):
                 group2list.append(wakesystem)
                 group2count=group2count+1
                 Log ("System " + str(wakesystem.index) + ": " + wakesystem.alias + " added to Group 2")
+            if (wakesystem.group == "Group 3") or (wakesystem.group == "Groups 1 and 3") or (wakesystem.group == "Groups 2 and 3"):
+		group3list.append(wakesystem)
+		group3count=group3count+1
+                Log ("System " + str(wakesystem.index) + ": " + wakesystem.alias + " added to Group 3")
     
 #    for wakesystem in grouplist:
 #        Log ("System: " + wakesystem.alias + " added to group")
@@ -103,6 +114,10 @@ def MainMenu():
     if (group2count > 0):
        group2name = Prefs['Group.2.wolname']
        oc.add(DirectoryObject(key=Callback(groupwake, groupname=group2name, groupnum=2), title="Wake " + group2name, summary="Number of Systems: " + str(group2count), thumb=R(GROUP_ICON)))   
+
+    if (group3count > 0):
+       group3name = Prefs['Group.3.wolname']
+       oc.add(DirectoryObject(key=Callback(groupwake, groupname=group3name, groupnum=3), title="Wake " + group3name, summary="Number of Systems: " + str(group3count), thumb=R(GROUP_ICON)))   
 
     oc.add(DirectoryObject(key=Callback(About), title='Plugin Version', thumb=R(ABOUT_ICON)))
 
@@ -125,7 +140,7 @@ def About():
 
     oc = ObjectContainer(title2='About')
 
-    oc.add(DirectoryObject(key=Callback(About), title='Name: %s Version: %s' % (NAME , WOL_VERSION) , summary='See https://github.com/SpacemanJT/wol.bundle for more information.', thumb=R(ABOUT_ICON)))
+    oc.add(DirectoryObject(key=Callback(About), title='Name: %s Version: %s Date: %s' % (NAME , WOL_VERSION, WOL_DATE) , summary='See https://github.com/SpacemanJT/wol.bundle for more information.', thumb=R(ABOUT_ICON)))
 
     return oc
 
@@ -138,7 +153,7 @@ def groupwake(groupname, groupnum):
     count=0
     errors=0
     firstrun=0
-    
+
     if groupnum == 1:
         groupdelay = Prefs['Group.1.stagger']
         for wakesystem in grouplist:
@@ -180,7 +195,28 @@ def groupwake(groupname, groupnum):
                 errors = errors +1
             count=count + 1
             firstrun = 1
-    
+
+    if groupnum == 3:
+        groupdelay = Prefs['Group.3.stagger']
+        for wakesystem in group3list:
+            if firstrun > 0:
+                if groupdelay == "0.5 seconds":
+                    Log ("Pausing for Group 3 Staggered Delay - 0.5 seconds")
+                    time.sleep(0.5)
+                if groupdelay == "1 second":
+                    Log ("Pausing for Group 3 Staggered Delay - 1 second")
+                    time.sleep(1)
+                if groupdelay == "1.5 seconds":
+                    Log ("Pausing for Group 3 Staggered Delay - 1.5 seconds")
+                    time.sleep(1.5)
+                if groupdelay == "2 seconds":
+                    Log ("Pausing for Group 3 Staggered Delay - 2 seconds")
+                    time.sleep(2)            
+            if not (sendmagic(wakesystem.macaddress, wakesystem.alias, wakesystem.port, wakesystem.broadcast, False)):
+                errors = errors +1
+            count=count + 1
+            firstrun = 1
+
 #    Log ("Number of Request sent: " + str(count) + " Number of Errors: " + str(errors))
 #    Log ("Group Wake Completed for Group Name: " + groupname + " Number: " + str(groupnum))
 
