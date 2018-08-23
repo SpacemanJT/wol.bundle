@@ -3,7 +3,7 @@ wol.bundle
 Wake on LAN Plugin for Plex
 ===========================
 
-SpacemanJT  - Andrew Sharrad 02-06-16
+SpacemanJT  - 02-06-16
 
 Many thanks to the valuable contributions from the community in the development of this Plugin.
 
