@@ -3,7 +3,7 @@ wol.bundle
 Wake on LAN Plugin for Plex
 ===========================
 
-SpacemanJT  - Andrew Sharrad - spacemanjt@yahoo.co.uk 02-06-16
+SpacemanJT  - Andrew Sharrad - spacemanjt@yahoo.co.uk 05-05-19
 
 Many thanks to the valuable contributions from the community in the development of this Plugin.
 
@@ -45,4 +45,5 @@ Revision History:
  1.05 14-05-16 Changed the number of servers supported from 10 to 12
                Changed the number of groups from 2 to 3
  1.06 02-06-16 Changed graphics to use smaller JPG files to reduce loading times
+ 1.09 05-05-19 Attempt to solve plugin not loading on iOS clients due to recent App updates
  
