@@ -1,7 +1,7 @@
 ###################################################################################################
 # Wake on LAN Utility for Plex
 #
-# SpacemanJT  - Andrew Sharrad 02-06-16
+# SpacemanJT  - Andrew Sharrad 05-05-19
 # Please see https://github.com/SpacemanJT/wol.bundle for more information
 #
 # Many thanks to the valuable contributions from the community in the development of this Plugin.
@@ -37,6 +37,7 @@
 # 1.05   14-05-16   Changed the number of servers supported from 10 to 12
 #                   Changed the number of groups from 2 to 3
 # 1.06   02-06-16   Changed graphics to use smaller JPG files to reduce loading times
+# 1.09   05-05-19   Attempt to solve plugin not loading on iOS clients due to recent App updates
 #
 ###################################################################################################
 
@@ -54,8 +55,8 @@ ABOUT_ICON = 'wol_icon-about.jpg'
 
 NAME = 'Wake on LAN'
 MAX_SERVERS = 12
-WOL_VERSION = 1.06
-WOL_DATE = '02-06-16'
+WOL_VERSION = 1.09
+WOL_DATE = '05-05-19'
 
 ####################################################################################################
 def Start():
@@ -67,7 +68,7 @@ def Start():
 ####################################################################################################     
 @handler(PREFIX , NAME, thumb=ICON, art=ART)
 @route(PREFIX + '/MainMenu')
-def MainMenu():
+def MainMenu(*args, **kwargs):
 
     groupcount = 0
     group2count = 0
@@ -147,7 +148,7 @@ def About():
 
 ####################################################################################################
 @route(PREFIX + '/groupwake', groupnum=int)
-def groupwake(groupname, groupnum):
+def groupwake(groupname, groupnum, **kwargs):
 
     Log ("Starting Group Wake for Group " + str(groupnum) + ": " + groupname)
     
@@ -236,7 +237,7 @@ def groupwake(groupname, groupnum):
 
 ####################################################################################################
 @route(PREFIX + '/sendmagic', port=int)
-def sendmagic(macaddress, alias, port, broadcast_ip, sendmess):
+def sendmagic(macaddress, alias, port, broadcast_ip, sendmess, **kwargs):
 
     send_data = []
 
